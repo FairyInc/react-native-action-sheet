@@ -70,6 +70,7 @@ class ActionGroup extends React.Component {
 
   render() {
     let {
+      message,
       options,
       icons,
       destructiveButtonIndex,
@@ -121,6 +122,7 @@ class ActionGroup extends React.Component {
 
     return (
       <View style={styles.groupContainer}>
+        {message && <Text style={styles.message}>{message}</Text>}
         <ScrollView>{optionViews}</ScrollView>
       </View>
     );
@@ -194,6 +196,7 @@ export default class ActionSheet extends React.Component {
           <View style={styles.sheet}
             onLayout={(event) => { this._actionSheetHeight = event.nativeEvent.layout.height }}>
             <ActionGroup
+              message={this.state.options.message}
               options={this.state.options.options}
               icons={this.state.options.icons}
               destructiveButtonIndex={this.state.options.destructiveButtonIndex}
@@ -405,4 +408,8 @@ let styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
+  message: {
+    marginHorizontal: 16,
+    marginVertical: 10
+  }
 });
